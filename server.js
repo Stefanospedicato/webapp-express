@@ -4,12 +4,17 @@ const port = process.env.PORT || 3000;
 
 const notFound = require('./middlewares/notFound')
 const showError = require('./middlewares/showError')
+const setPathImage = require('./middlewares/setPathImage')
+
 const moviesRouter = require('./routers/movies')
+
 require('dotenv').config()
 
 app.use(express.json())
 
 app.use(express.static('public'))
+
+app.use(setPathImage)
 
 app.get('/', (req,res) => {
   res.send('Server Movies')

@@ -6,7 +6,15 @@ const index = (req,res) => {
 
   connection.query(sql, (err, results) => {
     if(err) return res.status(500).json({err:'Connesione fallita'})
-    res.json(results)
+
+    const updatedMovies = results.map(item => {
+      return {
+        ...item,
+        image: req.setPathImage + item.image
+      }
+    })
+   
+    res.json(updatedMovies)
   })
 
 }
