@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const notFound = require('./middlewares/notFound')
 const showError = require('./middlewares/showError')
 const moviesRouter = require('./routers/movies')
+require('dotenv').config()
 
 app.use(express.json())
 
