@@ -4,6 +4,7 @@ const port = 3000;
 
 const notFound = require('./middlewares/notFound')
 const showError = require('./middlewares/showError')
+const moviesRouter = require('./routers/movies')
 
 app.use(express.json())
 
@@ -13,8 +14,9 @@ app.get('/', (req,res) => {
   res.send('Server Movies')
 })
 
-app.use(showError)
+app.use('/movies', moviesRouter);
 
+app.use(showError)
 app.use(notFound)
 
 app.listen(port, () => {
