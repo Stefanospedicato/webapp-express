@@ -12,8 +12,18 @@ const index = (req,res) => {
 }
 
 const show = (req,res) => {
+
   const id = req.params.id
-  res.send(`Mostro il movie con id= ${id}`)
+  
+  const sqlMovie = 'SELECT * FROM movies WHERE id=?'
+  
+  connection.query(sqlMovie,[id],(err,results) => {
+    if (err) return res.status(500).json({ error: 'Connessione al database fallita' });
+    if (results.length === 0) return res.status(404).json({ err: 'Film non trovato'})
+      
+    const movie = results[0]
+    res.json(movie)
+  })
 }
 
 
