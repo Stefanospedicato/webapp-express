@@ -8,8 +8,6 @@ const setPathImage = require('./middlewares/setPathImage')
 
 const moviesRouter = require('./routers/movies')
 
-require('dotenv').config()
-
 app.use(express.json())
 
 app.use(express.static('public'))
