@@ -40,13 +40,14 @@ const show = (req, res) => {
 
 const storeReview = (req, res) => {
   const id = req.params.id;
-  const { movie_id, name, vote, text } = req.body;
+  
+  const { name, vote, text } = req.body;
 
-  console.log('Dati ricevuti:', { movie_id, name, vote, text });
+  console.log('Dati ricevuti:', {  name, vote, text });
 
   const sql = 'INSERT INTO reviews (movie_id, name, vote, text) VALUES (?, ?, ?, ?)';
 
-  connection.query(sql, [movie_id, name, vote, text], (err, results) => {
+  connection.query(sql, [id, name, vote, text], (err, results) => {
     if (err) {
       console.error('Errore query SQL:', err);
       return res.status(500).json({ error: 'Connessione al database fallita' });
