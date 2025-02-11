@@ -57,8 +57,18 @@ const storeReview = (req, res) => {
 };
 
 const store = (req, res) =>{
-  console.log('ok');
+  const {title , director, genre, release_year, abstract} = req.body;
+  const imageName =req.file.filename;
+  console.log(imageName);
   
+  const sql = 'INSERT INTO movies (title, director, genre, release_year, abstract, image) VALUES ( ?, ?, ?, ?, ?, ?)'
+  connection.query(sql, [title, director, genre, release_year, abstract, imageName], (err, results) => {
+    if (err) {
+      console.error('Errore query SQL:', err);
+      return res.status(500).json({ error: 'Connessione al database fallita' });
+    }
+    res.status(201).json({ message: 'Film aggiunto correttamente!'});
+  })
 }
 
 
