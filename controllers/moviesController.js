@@ -56,9 +56,15 @@ const storeReview = (req, res) => {
   });
 };
 
+const store = (req, res) =>{
+  console.log('ok');
+  
+}
+
 
 module.exports = {
   index,
   show,
   storeReview,
+  store
 };
